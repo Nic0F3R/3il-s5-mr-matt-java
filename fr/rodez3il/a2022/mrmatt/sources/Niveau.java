@@ -1,5 +1,7 @@
 package fr.rodez3il.a2022.mrmatt.sources;
 
+import fr.rodez3il.a2022.mrmatt.sources.objets.*;
+
 public class Niveau {
 	
 	// Les objets sur le plateau du niveau
@@ -16,8 +18,12 @@ public class Niveau {
 	 * @author .............
 	 */
 	public Niveau(String chemin) {
-		this();
+		//this();
 		chargerNiveau(chemin);
+	}
+	
+	private void chargerNiveau(String ficher) {
+		//TODO
 	}
 
 	/**
@@ -52,10 +58,22 @@ public class Niveau {
 
   // Illustrez les Javadocs manquantes lorsque vous coderez ces méthodes !
   
-	public boolean enCours() {}
+	public boolean enCours() {
+		
+		/**
+		 * @todo : rédiger la fonction
+		 */
+		
+		return false;
+	}
 
   // Joue la commande C passée en paramètres
 	public boolean jouer(Commande c) {
+		/**
+		 * @todo : rédiger la fonction
+		 */
+		
+		return false;
 	}
 
 	/**
@@ -66,10 +84,14 @@ public class Niveau {
 
 	/**
 	 */
-	public boolean estIntermediaire() {}
+	public boolean estIntermediaire() {
+		/**
+		 * @todo : rédiger la fonction
+		 */
+		
+		return false;
+	}
 
   // Code pour empêcher la compilation
-
-  MANGEZ DES POMMES
 
 }

@@ -18,7 +18,6 @@ public class Niveau {
 	 * @author .............
 	 */
 	public Niveau(String chemin) {
-		//this();
 		chargerNiveau(chemin);
 	}
 	

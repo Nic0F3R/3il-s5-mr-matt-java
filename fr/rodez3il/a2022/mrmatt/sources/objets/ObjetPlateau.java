@@ -48,16 +48,16 @@ public abstract class ObjetPlateau {
 	/**
 	 * @return true si l'ObjetPlateau nouveau est vide, false si non-vide
 	 */
-	public boolean estVide() {
+	public abstract boolean estVide();/* {
 		return (this.nouveau == null);
-	}
+	}*/
 	
 	/**
 	 * Vérifie si l'ObjetPlateau nouveau est marchable ou non
 	 * 
 	 * @return true si marchable, sinon false
 	 */
-	public boolean estMarchable() {
+	public abstract boolean estMarchable();/* {
 		boolean resultat = false;
 		
 		if(this.nouveau instanceof Herbe) {
@@ -77,14 +77,14 @@ public abstract class ObjetPlateau {
 		}
 		
 		return resultat;
-	}
+	}*/
 	
 	/**
 	 * Vérifie si l'ObjetPlateau nouveau est poussable ou non
 	 * 
 	 * @return true si poussable, sinon false
 	 */
-	public boolean estPoussable() {
+	public abstract boolean estPoussable();/* {
 		boolean resultat = false;
 		
 		if(this.nouveau instanceof Herbe) {
@@ -104,14 +104,14 @@ public abstract class ObjetPlateau {
 		}
 		
 		return resultat;
-	}
+	}*/
 	
 	/**
 	 * Vérifie si l'ObjetPlateau nouveau est glissant ou non
 	 * 
 	 * @return true si glissant, sinon false
 	 */
-	public boolean estGlissant() {
+	public abstract boolean estGlissant();/* {
 		boolean resultat = false;
 		
 		if(this.nouveau instanceof Herbe) {
@@ -131,7 +131,7 @@ public abstract class ObjetPlateau {
 		}
 		
 		return resultat;
-	}
+	}*/
 	
 	/*
 	public void visiterPlateauCalculEtatSuivant(Niniveau, int x, int y) {

@@ -14,7 +14,8 @@ public class Niveau {
   
 	/**
 	 * Constructeur public : crée un niveau depuis un fichier.
-	 * @param chemin .....
+	 * 
+	 * @param chemin : le chemin du fichier
 	 * 
 	 * @author Nicolas Ferraye
 	 * @version le 04/12/2022
@@ -23,8 +24,9 @@ public class Niveau {
 		chargerNiveau(chemin);
 	}
 	
-	private void chargerNiveau(String ficher) {
+	private void chargerNiveau(String fichier) {
 		//TODO
+		Utils.lireFichier(fichier);
 	}
 	
 	/**
@@ -90,7 +92,7 @@ public class Niveau {
 	 * @author Nicolas Ferraye
 	 * @version le 04/12/2022
 	 */
-	public void afficher() {
+	public void afficher() throws NullPointerException {
 		
 		String plateauStr = "";
 		
@@ -132,13 +134,45 @@ public class Niveau {
 		return false;
 	}
 
-  // Joue la commande C passée en paramètres
+	/**
+	 * Permet de déplacer le joueur en fonction d'une Commande c
+	 * @param c la Commande saisie par le joueur
+	 * 
+	 * @author Nicolas Ferraye
+	 * @version le 04/12/2022
+	 */
 	public boolean jouer(Commande c) {
-		/**
-		 * @todo : rédiger la fonction
-		 */
 		
-		return false;
+		switch(c) {
+		
+	        case HAUT:
+	            deplacer((this.joueurX - 1), this.joueurY);
+	            break;
+	            
+	        case GAUCHE:
+	            deplacer(this.joueurX, (this.joueurY - 1));
+	            break;
+	            
+	        case BAS:
+	            deplacer((this.joueurX + 1), this.joueurY);
+	            break;
+	            
+	        case DROITE:
+	            deplacer(this.joueurX, (this.joueurY + 1));
+	            break;
+	            
+	        case ANNULER:
+	            break;
+	            
+	        case QUITTER:
+	            break;
+	            
+	        case ERREUR:
+	            break;
+	            
+		}
+		
+		return true;
 	}
 
 	/**

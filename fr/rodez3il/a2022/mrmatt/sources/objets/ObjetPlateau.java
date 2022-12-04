@@ -48,90 +48,29 @@ public abstract class ObjetPlateau {
 	/**
 	 * @return true si l'ObjetPlateau nouveau est vide, false si non-vide
 	 */
-	public abstract boolean estVide();/* {
-		return (this.nouveau == null);
-	}*/
+	public abstract boolean estVide();
+
 	
 	/**
 	 * Vérifie si l'ObjetPlateau nouveau est marchable ou non
 	 * 
 	 * @return true si marchable, sinon false
 	 */
-	public abstract boolean estMarchable();/* {
-		boolean resultat = false;
-		
-		if(this.nouveau instanceof Herbe) {
-			resultat = true;
-		} else if(this.nouveau instanceof Joueur) {
-			resultat = false;
-		} else if(this.nouveau instanceof Mur) {
-			resultat = false;
-		} else if(this.nouveau instanceof Pomme) {
-			resultat = true;
-		} else if(this.nouveau instanceof Rocher) {
-			resultat = false;
-		} else if(this.nouveau instanceof Vide) {
-			resultat = true;
-		} else {
-			resultat = false;
-		}
-		
-		return resultat;
-	}*/
+	public abstract boolean estMarchable();
 	
 	/**
 	 * Vérifie si l'ObjetPlateau nouveau est poussable ou non
 	 * 
 	 * @return true si poussable, sinon false
 	 */
-	public abstract boolean estPoussable();/* {
-		boolean resultat = false;
-		
-		if(this.nouveau instanceof Herbe) {
-			resultat = false;
-		} else if(this.nouveau instanceof Joueur) {
-			resultat = false;
-		} else if(this.nouveau instanceof Mur) {
-			resultat = false;
-		} else if(this.nouveau instanceof Pomme) {
-			resultat = false;
-		} else if(this.nouveau instanceof Rocher) {
-			resultat = true;
-		} else if(this.nouveau instanceof Vide) {
-			resultat = false;
-		} else {
-			resultat = false;
-		}
-		
-		return resultat;
-	}*/
+	public abstract boolean estPoussable();
 	
 	/**
 	 * Vérifie si l'ObjetPlateau nouveau est glissant ou non
 	 * 
 	 * @return true si glissant, sinon false
 	 */
-	public abstract boolean estGlissant();/* {
-		boolean resultat = false;
-		
-		if(this.nouveau instanceof Herbe) {
-			resultat = false;
-		} else if(this.nouveau instanceof Joueur) {
-			resultat = false;
-		} else if(this.nouveau instanceof Mur) {
-			resultat = false;
-		} else if(this.nouveau instanceof Pomme) {
-			resultat = false;
-		} else if(this.nouveau instanceof Rocher) {
-			resultat = true;
-		} else if(this.nouveau instanceof Vide) {
-			resultat = false;
-		} else {
-			resultat = false;
-		}
-		
-		return resultat;
-	}*/
+	public abstract boolean estGlissant();
 	
 	/*
 	public void visiterPlateauCalculEtatSuivant(Niniveau, int x, int y) {

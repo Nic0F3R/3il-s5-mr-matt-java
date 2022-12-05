@@ -24,9 +24,38 @@ public class Niveau {
 		chargerNiveau(chemin);
 	}
 	
+	/**
+	 * Permet de charger un niveau (initialisation de la patrice du plateau) à partir d'un fichier
+	 * 
+	 * @param fichier
+	 * 
+	 * @author Nicolas Ferrayé
+	 * @version le 05/12/2022
+	 */
 	private void chargerNiveau(String fichier) {
-		//TODO
-		Utils.lireFichier(fichier);
+
+		String strNiveau = Utils.lireFichier(fichier); // récupère la map et la dimention du tableau
+		
+		
+		String tabNiveauLignes[] = strNiveau.split("\n");
+		
+		int dimXmap = Integer.valueOf(tabNiveauLignes[0]);
+		int dimYmap = Integer.valueOf(tabNiveauLignes[1]);
+		
+		System.out.println("dimention x = " + dimXmap + "; y = " + dimYmap);
+		
+		plateau = new ObjetPlateau[dimXmap][dimYmap];
+		
+		for(int i = 0 ; i < dimXmap ; i++) {
+			for(int j = 0 ; j < dimYmap ; j++) {
+				
+				ObjetPlateau element = ObjetPlateau.depuisCaractere(tabNiveauLignes[j+2].charAt(i));
+				
+				plateau[i][j] = element; // initialisation du plateau
+				
+			}
+		}
+
 	}
 	
 	/**
@@ -149,16 +178,16 @@ public class Niveau {
 	            deplacer((this.joueurX - 1), this.joueurY);
 	            break;
 	            
-	        case GAUCHE:
-	            deplacer(this.joueurX, (this.joueurY - 1));
-	            break;
-	            
 	        case BAS:
 	            deplacer((this.joueurX + 1), this.joueurY);
 	            break;
 	            
 	        case DROITE:
 	            deplacer(this.joueurX, (this.joueurY + 1));
+	            break;
+	            
+	        case GAUCHE:
+	            deplacer(this.joueurX, (this.joueurY - 1));
 	            break;
 	            
 	        case ANNULER:

@@ -2,15 +2,15 @@ package fr.rodez3il.a2022.mrmatt.sources.objets;
 
 public abstract class ObjetPlateau {
 	
-	private ObjetPlateau nouveau;
-	
 	/**
 	 * Fabrique des objets
 	 * @param chr le symbole à produire
 	 * @return la classe ObjetPlateau correspondante
 	 */
-	public ObjetPlateau depuisCaractere(char chr) {
-		//nouveau = null;
+	public static ObjetPlateau depuisCaractere(char chr) {
+		
+		ObjetPlateau nouveau = null;
+		
 		switch(chr) {
 			case '-':
 				nouveau = new Herbe();

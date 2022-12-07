@@ -4,6 +4,7 @@ public abstract class ObjetPlateau {
 	
 	/**
 	 * Fabrique des objets
+	 * 
 	 * @param chr le symbole à produire
 	 * @return la classe ObjetPlateau correspondante
 	 */

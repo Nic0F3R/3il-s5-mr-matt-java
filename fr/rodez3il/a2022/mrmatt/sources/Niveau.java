@@ -10,6 +10,9 @@ public class Niveau {
 	private int joueurX;
 	private int joueurY;
 	
+	private int nbPommes; // le nombre de pommes de la carte
+	private int compteurPommes; // le nombre de pommes que le joueur a mangé
+	
   // Autres attributs que vous jugerez nécessaires...
   
 	/**
@@ -22,6 +25,7 @@ public class Niveau {
 	 */
 	public Niveau(String chemin) {
 		chargerNiveau(chemin);
+		this.compteurPommes = 0;
 	}
 	
 	/**
@@ -36,18 +40,19 @@ public class Niveau {
 
 		String strNiveau = Utils.lireFichier(fichier); // récupère la map et la dimention du tableau
 		
-		
 		String tabNiveauLignes[] = strNiveau.split("\n");
 		
 		int dimXmap = Integer.valueOf(tabNiveauLignes[0]);
 		int dimYmap = Integer.valueOf(tabNiveauLignes[1]);
 		
-		System.out.println("dimention x = " + dimXmap + "; y = " + dimYmap);
-		
 		plateau = new ObjetPlateau[dimXmap][dimYmap];
 		
 		for(int i = 0 ; i < dimXmap ; i++) {
 			for(int j = 0 ; j < dimYmap ; j++) {
+				
+				if(tabNiveauLignes[j+2].charAt(i) == '+') {
+					this.nbPommes++; // calcul du nombre de pommes dans le niveau chargé
+				}
 				
 				ObjetPlateau element = ObjetPlateau.depuisCaractere(tabNiveauLignes[j+2].charAt(i));
 				
@@ -60,6 +65,7 @@ public class Niveau {
 	
 	/**
 	 * Permet de vérifier si un déplacement vers le point [x + deltaX, y + deltaY] est possible ou impossible
+	 * 
 	 * @param deltaX l'abscisse
 	 * @param deltaY l'ordonnée
 	 * 
@@ -108,10 +114,19 @@ public class Niveau {
 	}
 
 	/**
-	 * Javadoc à réaliser...
+	 * Permet d'échanger l'objet en position [sourceX, sourceY] avec l'objet en position [destinationX, destinationY]
+	 * 
+	 * @params sourceX
+	 * @params sourceY
+	 * @params destinationX
+	 * @params destinationY
 	 */
 	private void echanger(int sourceX, int sourceY, int destinationX, int destinationY) {
-    // ........
+		ObjetPlateau objet1 = plateau[sourceX][sourceY];
+		ObjetPlateau objet2 = plateau[destinationX][destinationY];
+		
+		plateau[destinationX][destinationY] = objet1;
+		plateau[sourceX][sourceY] = objet2;
 	}
 
 	/**
@@ -128,8 +143,10 @@ public class Niveau {
 		for(int i = 0 ; i < this.plateau.length ; i++) {
 			
 			for(int j = 0 ; j < this.plateau[0].length ; j++) {
-				plateauStr = plateauStr + this.plateau[i][j];
+				plateauStr = plateauStr + this.plateau[i][j].afficher();
 			}
+			
+			plateauStr = plateauStr + "\n";
 			
 		}
 		
@@ -208,6 +225,12 @@ public class Niveau {
 	 * Affiche l'état final (gagné ou perdu) une fois le jeu terminé.
 	 */
 	public void afficherEtatFinal() {
+		
+		if(this.compteurPommes >= this.nbPommes) {
+			System.out.println("Vous avez gagné !");
+		}
+		
+		//TODO : faire de même pour partie perdue
 	}
 
 	/**

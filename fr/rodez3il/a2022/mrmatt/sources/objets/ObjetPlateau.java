@@ -1,18 +1,20 @@
 package fr.rodez3il.a2022.mrmatt.sources.objets;
 
+import fr.rodez3il.a2022.mrmatt.sources.Niveau;
+
 public abstract class ObjetPlateau {
 	
 	/**
 	 * Fabrique des objets
 	 * 
-	 * @param chr le symbole à produire
-	 * @return la classe ObjetPlateau correspondante
+	 * @param chr un caractère correspondant à un objet héritant d'ObjetPlateau
+	 * @return un objet instancié correspondant, héritant d'ObjetPlateau
 	 */
 	public static ObjetPlateau depuisCaractere(char chr) {
 		
 		ObjetPlateau nouveau = null;
 		
-		switch(chr) {
+		switch(chr) { // chr 
 			case '-':
 				nouveau = new Herbe();
 				break;
@@ -71,10 +73,14 @@ public abstract class ObjetPlateau {
 	 */
 	public abstract boolean estGlissant();
 	
-	/*
-	public void visiterPlateauCalculEtatSuivant(Niniveau, int x, int y) {
-		
-	}
-	*/
 	
- }
+	/**
+	 * Permet de calculer l'état suivant pour Rocher
+	 * 
+	 * @param niveau
+	 * @param x
+	 * @param y
+	 */
+	public void visiterPlateauCalculEtatSuivant(Niveau niveau, int x, int y) {}
+	
+}

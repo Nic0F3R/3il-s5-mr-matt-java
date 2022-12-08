@@ -1,5 +1,7 @@
 package fr.rodez3il.a2022.mrmatt.sources.objets;
 
+import fr.rodez3il.a2022.mrmatt.sources.Niveau;
+
 public class Rocher extends ObjetPlateau {
 
 	@Override
@@ -34,6 +36,11 @@ public class Rocher extends ObjetPlateau {
 	@Override
 	public boolean estGlissant() {
 		return true;
+	}
+	
+	@Override
+	public void visiterPlateauCalculEtatSuivant(Niveau niveau, int x, int y) {
+		niveau.etatSuivantVisiteur(this, x, y);
 	}
 
 }

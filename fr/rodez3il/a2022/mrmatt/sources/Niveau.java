@@ -136,7 +136,7 @@ public class Niveau {
 	 * @author Nicolas Ferraye
 	 * @version le 04/12/2022
 	 */
-	public void afficher() throws NullPointerException {
+	public void afficher() {
 		
 		String plateauStr = "";
 		
@@ -219,6 +219,7 @@ public class Niveau {
 		}
 		
 		return true;
+		
 	}
 
 	/**

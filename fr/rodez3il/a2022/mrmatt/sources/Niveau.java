@@ -13,6 +13,8 @@ public class Niveau {
 	private int nbPommes; // le nombre de pommes de la carte
 	private int compteurPommes; // le nombre de pommes que le joueur a mangé
 	
+	private boolean aGagne; // true si le joueur a gagné, false sinon
+	
   // Autres attributs que vous jugerez nécessaires...
   
 	/**
@@ -24,8 +26,9 @@ public class Niveau {
 	 * @version le 04/12/2022
 	 */
 	public Niveau(String chemin) {
-		chargerNiveau(chemin);
-		this.compteurPommes = 0;
+		chargerNiveau(chemin); // chargement du plateau et de la partie
+		this.compteurPommes = 0; // initialisation du compteur de pommes à 0
+		this.aGagne = false; // initialisation du booléen aGagne à false
 	}
 	
 	/**
@@ -38,23 +41,23 @@ public class Niveau {
 	 */
 	private void chargerNiveau(String fichier) {
 
-		String strNiveau = Utils.lireFichier(fichier); // récupère la map et la dimention du tableau
+		String strNiveau = Utils.lireFichier(fichier); // Récupère le contenu du fichier (map et dimention du plateau)
 		
-		String tabNiveauLignes[] = strNiveau.split("\n");
+		String tabNiveauLignes[] = strNiveau.split("\n"); // Subdivise le plateau (matrice) en sous-parties (tableau) avec le saut à la ligne
 		
-		int dimXmap = Integer.valueOf(tabNiveauLignes[0]);
-		int dimYmap = Integer.valueOf(tabNiveauLignes[1]);
+		int dimXmap = Integer.valueOf(tabNiveauLignes[0]); // Récupère la dimention de l'axe des abscisses du plateau
+		int dimYmap = Integer.valueOf(tabNiveauLignes[1]); // Récupère la dimention de l'axe des ordonnées du plateau
 		
-		plateau = new ObjetPlateau[dimXmap][dimYmap];
+		plateau = new ObjetPlateau[dimXmap][dimYmap]; // Cette matrice va contenir uniquement le plateau (sans les dimentions X et Y du plateau)
 		
 		for(int i = 0 ; i < dimXmap ; i++) {
-			for(int j = 0 ; j < dimYmap ; j++) {
+			for(int j = 0 ; j < dimYmap ; j++) { // doubles boucles permettant de parcourir la matrice
 				
 				if(tabNiveauLignes[j+2].charAt(i) == '+') {
 					this.nbPommes++; // calcul du nombre de pommes dans le niveau chargé
 				}
 				
-				ObjetPlateau element = ObjetPlateau.depuisCaractere(tabNiveauLignes[j+2].charAt(i));
+				ObjetPlateau element = ObjetPlateau.depuisCaractere(tabNiveauLignes[j+2].charAt(i)); // récupération du caractère puis initialisation de l'objet correspondant, héritant d'ObjetPlateau
 				
 				plateau[i][j] = element; // initialisation du plateau
 				
@@ -103,6 +106,7 @@ public class Niveau {
 	 */
 	public void deplacer(int deltaX, int deltaY) {
 		
+		// variables temporaires permettant le déplacement
 		int nouveauX = this.joueurX + deltaX;
 		int nouveauY = this.joueurY + deltaY;
 		
@@ -122,11 +126,14 @@ public class Niveau {
 	 * @params destinationY
 	 */
 	private void echanger(int sourceX, int sourceY, int destinationX, int destinationY) {
+		
+		// variables temporaires permettant l'échange
 		ObjetPlateau objet1 = plateau[sourceX][sourceY];
 		ObjetPlateau objet2 = plateau[destinationX][destinationY];
 		
 		plateau[destinationX][destinationY] = objet1;
 		plateau[sourceX][sourceY] = objet2;
+		
 	}
 
 	/**
@@ -138,19 +145,20 @@ public class Niveau {
 	 */
 	public void afficher() {
 		
-		String plateauStr = "";
+		String plateauStr = ""; // variable contenant le plateau transformé en chaîne de caractères
 		
 		for(int i = 0 ; i < this.plateau.length ; i++) {
-			
-			for(int j = 0 ; j < this.plateau[0].length ; j++) {
+			for(int j = 0 ; j < this.plateau[0].length ; j++) { // doubles boucles permettant de parcourir le plateau
+				
 				plateauStr = plateauStr + this.plateau[i][j].afficher();
+				
 			}
 			
-			plateauStr = plateauStr + "\n";
+			plateauStr = plateauStr + "\n"; // ajout du saut à la ligne après le parcours d'une ligne
 			
 		}
 		
-		System.out.println(plateauStr);
+		System.out.println(plateauStr); // affichage du plateau
 		
 	}
 
@@ -208,6 +216,7 @@ public class Niveau {
 	            break;
 	            
 	        case ANNULER:
+	        	this.aGagne = false;
 	            break;
 	            
 	        case QUITTER:
@@ -229,6 +238,7 @@ public class Niveau {
 		
 		if(this.compteurPommes >= this.nbPommes) {
 			System.out.println("Vous avez gagné !");
+			this.aGagne = true;
 		}
 		
 		//TODO : faire de même pour partie perdue

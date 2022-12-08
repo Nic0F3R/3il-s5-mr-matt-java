@@ -13,7 +13,6 @@ public class Niveau {
 	private int nbPommes; // le nombre de pommes de la carte
 	private int compteurPommes; // le nombre de pommes que le joueur a mangé
 	
-	private boolean aGagne; // true si le joueur a gagné, false sinon
 	
   // Autres attributs que vous jugerez nécessaires...
   
@@ -28,7 +27,6 @@ public class Niveau {
 	public Niveau(String chemin) {
 		chargerNiveau(chemin); // chargement du plateau et de la partie
 		this.compteurPommes = 0; // initialisation du compteur de pommes à 0
-		this.aGagne = false; // initialisation du booléen aGagne à false
 	}
 	
 	/**
@@ -216,7 +214,6 @@ public class Niveau {
 	            break;
 	            
 	        case ANNULER:
-	        	this.aGagne = false;
 	            break;
 	            
 	        case QUITTER:
@@ -238,7 +235,6 @@ public class Niveau {
 		
 		if(this.compteurPommes >= this.nbPommes) {
 			System.out.println("Vous avez gagné !");
-			this.aGagne = true;
 		}
 		
 		//TODO : faire de même pour partie perdue
@@ -253,7 +249,5 @@ public class Niveau {
 		
 		return false;
 	}
-
-  // Code pour empêcher la compilation
 
 }
